@@ -55,11 +55,14 @@ def create_second_wedge():
     # This wedge lies directly on top of the sloped face
     # So we offset all X values by the thickness of the first wedge at each Y
 
+    # Find the first wedge thickness at the end of the second wedge
+    wedge_thickness = thickness_at(second_wedge_length)
+
     profile = polygon(points=[
         [top_thickness, 0],
         [top_thickness + 5, 0],
-        [bottom_thickness, second_wedge_length],
-        [bottom_thickness, second_wedge_length]  # optional, for clarity
+        [wedge_thickness, second_wedge_length],
+        [wedge_thickness, second_wedge_length]  # optional, for clarity
     ])
     return linear_extrude(width)(profile)
 
