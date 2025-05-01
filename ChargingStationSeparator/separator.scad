@@ -26,7 +26,7 @@ difference() {
 *********      SolidPython code:      **********
 ************************************************
  
-#! /home/tfili/Source/tfili/3d-printing/3d-model-generation/bin/python
+#! /home/tfili/Source/tfili/3d-printing/venv/bin/python
 
 from solid import *
 from solid.utils import *
