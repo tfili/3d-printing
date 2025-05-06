@@ -15,16 +15,16 @@ screw_radius = screw_diameter / 2
 
 # Hole positions (from top and bottom)
 hole1_from_top = 24.5
-hole2_from_bottom = 21
+hole2_from_bottom = 22
 hole1_y = hole1_from_top                     # 24.5mm from top
-hole2_y = height - hole2_from_bottom         # 19mm from bottom
+hole2_y = height - hole2_from_bottom         # 22mm from bottom
 
 # Calculate slope angle in degrees
 slope_angle = math.degrees(math.atan2(top_thickness - bottom_thickness, height))
 
 # Second wedge parameters
 second_wedge_length = 132  # vertical height along original Y
-second_top_thickness = 5
+second_top_thickness = 6
 second_bottom_thickness = 0
 
 # Calculate thickness at a specific Y position along the slope
@@ -77,15 +77,14 @@ def create_second_wedge_hole(y_pos):
         )
     )
 
+#def create_top_rounded_mask():
+    # Generate a rectangle and cut a cylinder out of it and subtract that from the model
+
 # Build model
 wedge = create_wedge()
 hole1 = create_side_hole(hole1_y)
 hole2 = create_side_hole(hole2_y)
-second_wedge = translate([0, 0, 0])(
-    translate([0, 0, 0])(
-        translate([0, 0, 0])(create_second_wedge())
-    )
-)
+second_wedge = create_second_wedge()
 second_hole = create_second_wedge_hole(hole1_y)
 
 # Combine everything
