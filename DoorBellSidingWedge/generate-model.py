@@ -19,6 +19,8 @@ hole2_from_bottom = 22
 hole1_y = hole1_from_top                     # 24.5mm from top
 hole2_y = height - hole2_from_bottom         # 22mm from bottom
 
+rounded_edge_radius = 15
+
 # Calculate slope angle in degrees
 slope_angle = math.degrees(math.atan2(top_thickness - bottom_thickness, height))
 
@@ -77,8 +79,28 @@ def create_second_wedge_hole(y_pos):
         )
     )
 
-#def create_top_rounded_mask():
-    # Generate a rectangle and cut a cylinder out of it and subtract that from the model
+# Generate a rectangle and cut a cylinder out of it and subtract that from the model
+def create_rounded_mask(top=True):
+    thickness = top_thickness + second_top_thickness
+    scaleFactor = width / (2 * rounded_edge_radius);
+    rect = translate([0, (0 if top else rounded_edge_radius), 0]) (
+             cube([thickness, rounded_edge_radius, width], center = False)
+           )
+    cyl = scale([1, 1, (width/(rounded_edge_radius*2))+0.1]) (
+            translate([0, rounded_edge_radius, rounded_edge_radius]) (
+              rotate([0,90,0]) (
+                cylinder(r = rounded_edge_radius, h = thickness, center = False)
+              )
+            )
+          )
+
+    return rect - cyl
+
+# Move it to the bottom
+def create_bottom_rounded_mask():
+    return translate([0, height-rounded_edge_radius*2, 0]) (
+      create_rounded_mask(False)
+    )
 
 # Build model
 wedge = create_wedge()
@@ -86,9 +108,11 @@ hole1 = create_side_hole(hole1_y)
 hole2 = create_side_hole(hole2_y)
 second_wedge = create_second_wedge()
 second_hole = create_second_wedge_hole(hole1_y)
+top_mask = create_rounded_mask();
+bottom_mask = create_bottom_rounded_mask()
 
 # Combine everything
-model = (wedge + second_wedge) - (hole1 + hole2 + second_hole)
+model = (wedge + second_wedge) - (hole1 + hole2 + second_hole) - top_mask - bottom_mask
 
 # Export to SCAD
 scad_render_to_file(model, 'wedge.scad')
