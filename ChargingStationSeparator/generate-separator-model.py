@@ -7,9 +7,9 @@ import subprocess
 
 # Parameters
 width = 91.85
-height = 44.20
-thickness = 2.28
-corner_radius = 15
+height = 50.0
+thickness = 2.3
+corner_radius = 15.0
 
 # Notch dimensions
 notch_width = 3
