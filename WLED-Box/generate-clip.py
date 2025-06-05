@@ -1,0 +1,62 @@
+#! /home/tfili/Source/tfili/3d-printing/venv/bin/python
+
+from solid import *
+from solid.utils import *
+import subprocess
+
+# Parameters
+clip_width = 50         # Width of the clip (X-axis)
+clip_length = 30        # Length of the clip (Y-axis)
+clip_side_thickness = 2 # Thickness of each side (Z)
+clip_gap = 2.8          # Gap between the sides
+clip_top_thickness = 2  # Thickness of the connecting top
+clip_height = clip_side_thickness * 2 + clip_gap
+
+base_width = 50         # Width of the base (X-axis)
+base_length = 48        # Length of the base (Y-axis)
+base_side_thickness = 2 # Thickness of each base (Z)
+base_gap = 125.5        # Gap between the sides
+base_top_thickness = 2  # Thickness of the connecting top
+base_height = base_side_thickness * 2 + base_gap
+
+def u_clip(width, length, side_thickness, top_thickness, gap):
+    # Bottom arm
+    bottom = cube([width, length, side_thickness])
+
+    # Top arm (connected to bottom via the back face)
+    top = translate([0, 0, side_thickness + gap])(cube([width, length, side_thickness]))
+
+    # Back connector
+    connector = translate([0, 0, side_thickness])(cube([width, top_thickness, gap]))
+
+    return bottom + top + connector
+
+def end_clip():
+    clip = u_clip(clip_width, clip_length, clip_side_thickness, clip_top_thickness, clip_gap)
+
+    # Translate to origin
+    clip = translate([-clip_width/2,-clip_length/2,0])(clip)
+
+    # Rotate 180 deg around Z
+    clip = rotate([0,0,180])(clip)
+
+    # Rotate back to original location
+    clip = translate([clip_width/2,clip_length/2,0])(clip)
+    return clip
+
+def top():
+    return translate([0, base_length, base_height-clip_height])(end_clip());
+
+def bottom():
+    return translate([0, base_length, 0])(end_clip())
+
+# Create and export the model
+
+top_clip = top()
+bottom_clip = bottom()
+base_clip = u_clip(base_width, base_length, base_side_thickness, base_top_thickness, base_gap)
+
+scad_render_to_file(base_clip + top_clip + bottom_clip, 'clip.scad')
+
+# Convert to STL
+subprocess.run(["openscad", "-o", "clip.stl", "clip.scad"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
