@@ -1,6 +1,9 @@
 # Kitchen
 
+- [Banana Hanger.3mf](https://makerworld.com/en/models/92073-banana-hanger#profileId-98465)
 - [DishwasherSlider-10X2mm.3mf](https://makerworld.com/en/models/1638212-dishwasher-clean-dirty-slider)
 - [DogBreadClip.3mf](https://makerworld.com/en/models/391545-dog-bread-clip?from=search#profileId-292570)
 - [Magnetic Cup Holder.3mf](https://makerworld.com/en/models/868591-magnetic-cup-holder)
 - [sponge_holder.3mf](https://makerworld.com/en/models/1546096-kitchen-sponge-holder#profileId-1623457)
+- [Vortex Fruit Washer Cap.3mf](https://makerworld.com/en/models/1575906-vortex-fruit-washer-size-l#profileId-1701789)
+- [Vortex Fruit Washer L W Support Easy.3mf](https://makerworld.com/en/models/1575906-vortex-fruit-washer-size-l#profileId-1696540)

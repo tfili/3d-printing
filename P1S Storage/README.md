@@ -6,6 +6,8 @@
 - [Hook.3mf](https://makerworld.com/en/models/1489048-hook-for-p1s-cloth-scrapper-etc)
 - [LiquidGlueHolder.3mf](https://makerworld.com/en/models/698290-x1c-p1s-glue-holder)
 - [P1S Poop Shoot.3mf](https://makerworld.com/en/models/714868-eco-filament-poop-bin-x1-x1c-p1p-and-p1s)
+- [P1S Riser - Anti Vibration Feet.3mf](https://makerworld.com/en/models/1347731-x1-p2s-p1s-poop-chute-under-printer-storage#profileId-2576632)
+- [P1S Riser - Full Print.3mf](https://makerworld.com/en/models/1347731-x1-p2s-p1s-poop-chute-under-printer-storage#profileId-1389787)
 - [Scraper Grip by Bambu Lab-colored.3mf](https://makerworld.com/en/models/12702-bambu-scraper-grip)
 - [ScraperHolder_v2.3mf](https://makerworld.com/en/models/663681-x1c-p1s-bambu-scraper-grid-side-holder)
 - [SideBox.3mf](https://makerworld.com/en/models/661728-x1c-p1s-side-storage-container)
