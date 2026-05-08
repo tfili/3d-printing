@@ -1,1 +1,0 @@
-[Three color Gear Fidget.3mf](https://makerworld.com/en/models/1675873-gear-fidget-spinner-print-in-place#profileId-1774836)
